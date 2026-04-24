@@ -9,19 +9,14 @@ function q = gen_shape(rho, nSpikes, R,color)
 
 
 %%define outer (r_o) and inner (r_i) radii based on shape param rho 
-%rho = 1 is round
-if rho<1 && rho>0
-    r_o = R * sqrt( (2*log(rho)) / (rho^2 - 1) );     
+if rho<1
+    r_o = R * sqrt( (2*log(rho)) / (rho^2 - 1) ); 
 else
-    r_o = R; %if rho 1 then draw complete circle with r_o = r_i
+    r_o = R;
 end
-r_o
-if rho<0
-    r_i = r_o - abs(rho*r_o)
-else 
-    r_i = rho*r_o;
-end 
-r_i    
+r_i = rho * r_o;
+
+
 %%draw shape based distance from centre of polar coordinates:
 theta_i=1; 
 theta_o=theta_i + (360/(2*nSpikes));
